@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  #hizmetin neye karşılık geleceğini yani container ismi belirkedik
+  server:
+    #hizmeti yürütmeye izin vercek docker file yolunu yazıyoruz
+    build: ./server/.
+
+  client:
+    build: ./client/.
+    depends_on:
+      # Burada 'istemci' hizmetinin 'sunucu' hizmeti hazır olana kadar beklemesini istiyoruz.Yani baslangıc server olacak.
+      - server
+    links:
+      - server
